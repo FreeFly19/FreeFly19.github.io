@@ -1,2 +1,51 @@
-<h2>Welcome to home page!!!</h2>
-<a href="page1.html">Go to first page</a>
+<!doctype html>
+<html ng-app="myApp">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+  <script>
+  	angular
+	.module('myApp', [])
+	.controller('MyCtrl', function ($scope, $rootScope, $timeout, $http) {
+		$scope.cards = [];
+
+		$scope.addCard = function () {
+			$scope.cards.push($scope.newCard);
+			$scope.newCard = {};
+		};
+	});
+  </script>
+</head>
+<body>
+
+  <div ng-controller="MyCtrl">
+		<table>
+			<tr>
+				<td>First name:</td>
+				<td><input ng-model="newCard.firstName"></td>
+			</tr>
+			<tr>
+				<td>Last name:</td>
+				<td><input ng-model="newCard.lastName"></td>
+			</tr>
+			<tr>
+				<td>Phone number:</td>
+				<td><input ng-model="newCard.number"></td>
+			</tr>
+			<tr>
+				<td>Address:</td>
+				<td><input ng-model="newCard.address"></td>
+			</tr>
+			<tr>
+				<td colspan="2" style="text-align: center;"><button style="width: 100%;" ng-click="addCard()">Add</button></td>
+			</tr>
+		</table>
+
+		<div ng-repeat="card in cards" style="border: solid 1px #aaa; border-radius: 3px; margin-bottom: 10px; padding: 5px; width: 280px">
+		  	{{card.firstName}} {{card.lastName}} <br>
+		  	Telephone number: <strong>{{card.number}}</strong> <br>
+		  	Address: <i>{{card.address}}</i>
+	  	</div>
+
+  </div>
+</body>
+</html>
